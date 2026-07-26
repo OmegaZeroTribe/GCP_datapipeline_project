@@ -43,5 +43,5 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 * **DataFlow Template**
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/41799256653c93741e46dceeaeb1d2422d2df44b/dataflow_template.png)
   Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
-
+  DataFlow Execution Command: https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/a65ed20a804ce3b4a59fac3a1f315a82d756f184/dataflow_deploy/import-sales-record.sh
 
