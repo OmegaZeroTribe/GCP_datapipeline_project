@@ -11,4 +11,13 @@ An end-to-end serverless data processing pipeline built on Google Cloud Platform
 ---
 
 ## 🏗️ Architecture Diagram
-![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/c819f6f8aef625423f05570f679f379addebc76b/architecture.png)
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/bb8c8b5c2be6dee34bcb4cbf2f362b170abacff5/architecture.png)
+
+---
+
+## 🛠️ Tech Stack & GCP Services
+* **Storage:** Google Cloud Storage (GCS)
+* **Loading** Apache Beam (Java SDK) , Dataflow pipeline (CSV file to BigQuery Template)
+* **Processing:** BigQuery DataForm
+* **Data Warehouse:** Google BigQuery
+* **Sercurity&Permission:** Cloud IAM (Grant Permission Role to Service Account)
