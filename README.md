@@ -37,6 +37,7 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 ## ⚡ Pipeline Pipeline Workflow & Key Steps
 
 ### 1. Ingestion: Dataflow Template Execution (Extract & Load)
-Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
+* **Generate-MockUpdate:** use Python script https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/05701d4e022669a1c6a85f13de8655ee225b54a3/generate_scipt/mockup_data.ipynb
+* Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
 
 
