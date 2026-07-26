@@ -31,5 +31,5 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 |---|---|---|
 | **Cloud Storage** | `roles/storage.objectViewer` | Read raw CSV files & Dataflow staging scripts |
 | **Dataflow** | `roles/dataflow.worker` | Execute compute tasks on worker VMs |
-| **BigQuery** | `roles/bigquery.dataEditor` | Insert records into `staging_ds.raw_sales` |
+| **BigQuery** | `roles/bigquery.dataEditor` | Insert records into `sales_anlyst.sales_record` |
 | **Dataform** | `roles/dataform.editor` | Run SQLX transformations & data assertions |
