@@ -40,6 +40,8 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 * **Generate-MockUpdate:** use Python script https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/05701d4e022669a1c6a85f13de8655ee225b54a3/generate_scipt/mockup_data.ipynb
 * **Structure-Bucket-in-GCS:**
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/6eb93079e229c09f58d6bbfa43696b23d9ac7560/gcs.png)
-* Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
+* **DataFlow Template**
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/41799256653c93741e46dceeaeb1d2422d2df44b/dataflow_template.png)
+  Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
 
 
