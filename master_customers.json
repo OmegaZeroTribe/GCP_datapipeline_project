@@ -1,0 +1,28 @@
+{
+  "BigQuery Schema": [
+    {
+      "name": "customer_id",
+      "type": "STRING"
+    },
+    {
+      "name": "customer_name",
+      "type": "STRING"
+    },
+    {
+      "name": "email",
+      "type": "STRING"
+    },
+    {
+      "name": "signup_date",
+      "type": "DATE"
+    },
+    {
+      "name": "city",
+      "type": "STRING"
+    },
+    {
+      "name": "state",
+      "type": "STRING"
+    }
+  ]
+}

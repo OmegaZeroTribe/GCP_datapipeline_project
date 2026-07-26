@@ -1,0 +1,24 @@
+{
+  "BigQuery Schema": [
+    {
+      "name": "product_id",
+      "type": "STRING"
+    },
+    {
+      "name": "product_name",
+      "type": "STRING"
+    },
+    {
+      "name": "category",
+      "type": "STRING"
+    },
+    {
+      "name": "cost",
+      "type": "FLOAT"
+    },
+    {
+      "name": "unit_price",
+      "type": "FLOAT"
+    }
+  ]
+}

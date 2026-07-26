@@ -1,0 +1,20 @@
+{
+  "BigQuery Schema": [
+    {
+      "name": "store_id",
+      "type": "STRING"
+    },
+    {
+      "name": "store_name",
+      "type": "STRING"
+    },
+    {
+      "name": "region",
+      "type": "STRING"
+    },
+    {
+      "name": "store_type",
+      "type": "STRING"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "BigQuery Schema": [
+    {
+      "name": "transaction_id",
+      "type": "STRING"
+    },
+    {
+      "name": "transaction_date",
+      "type": "DATE"
+    },
+    {
+      "name": "customer_id",
+      "type": "STRING"
+    },
+    {
+      "name": "product_id",
+      "type": "STRING"
+    },
+    {
+      "name": "store_id",
+      "type": "STRING"
+    },
+    {
+      "name": "quantity",
+      "type": "INTEGER"
+    },
+    {
+      "name": "unit_price",
+      "type": "FLOAT"
+    },
+    {
+      "name": "gross_amount",
+      "type": "FLOAT"
+    },
+    {
+      "name": "discount_pct",
+      "type": "FLOAT"
+    },
+    {
+      "name": "discount_amount",
+      "type": "FLOAT"
+    },
+    {
+      "name": "net_amount",
+      "type": "FLOAT"
+    },
+    {
+      "name": "payment_method",
+      "type": "STRING"
+    }
+  ]
+}
