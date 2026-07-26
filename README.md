@@ -39,5 +39,6 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 ### 1. Ingestion: Dataflow Template Execution (Extract & Load)
 * **Generate-MockUpdate:** use Python script https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/05701d4e022669a1c6a85f13de8655ee225b54a3/generate_scipt/mockup_data.ipynb
 * Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
-
+* **Structure-Bucket-in-GCS:**
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/6eb93079e229c09f58d6bbfa43696b23d9ac7560/gcs.png)
 
