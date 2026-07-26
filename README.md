@@ -33,3 +33,10 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 | **Dataflow** | `roles/dataflow.worker` | Execute compute tasks on worker VMs |
 | **BigQuery** | `roles/bigquery.dataEditor` | Insert records into `sales_anlyst.sales_record` |
 | **Dataform** | `roles/dataform.editor` | Run SQLX transformations & data assertions |
+
+## ⚡ Pipeline Pipeline Workflow & Key Steps
+
+### 1. Ingestion: Dataflow Template Execution (Extract & Load)
+Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
+
+
