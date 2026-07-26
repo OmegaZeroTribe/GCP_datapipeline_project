@@ -21,3 +21,15 @@ An end-to-end serverless data processing pipeline built on Google Cloud Platform
 * **Processing:** BigQuery DataForm
 * **Data Warehouse:** Google BigQuery
 * **Sercurity&Permission:** Cloud IAM (Grant Permission Role to Service Account)
+
+## 🔒 Security & IAM Configuration (Least Privilege)
+
+To ensure secure execution without using full Admin privileges, a dedicated Service Account (`dataflow@<PROJECT_ID>.iam.gserviceaccount.com`) is provisioned with granular roles:
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/1acd8de81a9687ca8078f0b56e1309b4e4e85dec/service_account.png)
+
+| GCP Component | Role Granted | Purpose |
+|---|---|---|
+| **Cloud Storage** | `roles/storage.objectViewer` | Read raw CSV files & Dataflow staging scripts |
+| **Dataflow** | `roles/dataflow.worker` | Execute compute tasks on worker VMs |
+| **BigQuery** | `roles/bigquery.dataEditor` | Insert records into `staging_ds.raw_sales` |
+| **Dataform** | `roles/dataform.editor` | Run SQLX transformations & data assertions |
