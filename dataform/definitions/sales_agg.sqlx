@@ -1,0 +1,59 @@
+config {
+  type: "table",
+  schema: "sales_analyst",
+  name: "sales_agg",
+  description: "Monthly aggregation showing the top-selling product by net revenue for each month."
+}
+
+-- Step 1: Group & Aggregate raw sales data by month
+WITH monthly_sales AS (
+  SELECT
+    DATE_TRUNC(s.transaction_date, MONTH) AS sales_month,
+    s.product_id,
+    s.product_name,
+    s.product_category,
+    COUNT(DISTINCT s.transaction_id) AS total_transactions,
+    SUM(s.quantity) AS total_units_sold,
+    SUM(s.net_amount) AS total_net_revenue,
+    SUM(s.profit_amount) AS total_profit
+  FROM
+    ${ref("sales_enriched")} AS s
+  GROUP BY
+    1, 2, 3, 4
+),
+
+-- Step 2: Rank products per month using the aggregated result
+ranked_sales AS (
+  SELECT
+    sales_month,
+    product_id,
+    product_name,
+    product_category,
+    total_transactions,
+    total_units_sold,
+    total_net_revenue,
+    total_profit,
+    ROW_NUMBER() OVER (
+      PARTITION BY sales_month
+      ORDER BY total_net_revenue DESC
+    ) AS sales_rank
+  FROM
+    monthly_sales
+)
+
+-- Step 3: Extract the top-selling product for each month
+SELECT
+  sales_month,
+  product_id,
+  product_name,
+  product_category,
+  total_transactions,
+  total_units_sold,
+  total_net_revenue,
+  total_profit
+FROM
+  ranked_sales
+WHERE
+  sales_rank = 1
+ORDER BY
+  sales_month DESC
