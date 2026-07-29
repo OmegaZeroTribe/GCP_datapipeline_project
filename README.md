@@ -46,3 +46,5 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
   * DataFlow Execution Command: https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/a65ed20a804ce3b4a59fac3a1f315a82d756f184/dataflow_deploy/import-sales-record.sh
 * **DataFlow Pipeline**
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/cb62ad07dab32135fc461bdda1552f550ed2fa80/dataflow_pipeline.png)
+* **Result Table Loaded to Bigquery**
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/f5066099e9675314d873a11041d2c1c2c6167f2d/result_load_bq.png)
