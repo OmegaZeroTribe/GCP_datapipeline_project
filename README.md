@@ -197,3 +197,5 @@ WHERE
 ORDER BY
   sales_month DESC
 ```
+* **Query Sales_agg Result in BigQuery :**
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/0da766777e87e4e7c027a9ac009c6795d9dd586f/sales_agg_result.png)
