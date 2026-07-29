@@ -48,3 +48,6 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/cb62ad07dab32135fc461bdda1552f550ed2fa80/dataflow_pipeline.png)
 * **Result Table Loaded to Bigquery**
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/f5066099e9675314d873a11041d2c1c2c6167f2d/result_load_bq.png)
+
+### 2. Cleansing&TransForm: BigQuery & DataForm (TransForm)
+* **DataForm SQLX:** use SQLX script to cleansing & transform data
