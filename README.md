@@ -51,3 +51,5 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 
 ### 2. Cleansing&TransForm: BigQuery & DataForm (TransForm)
 * **DataForm SQLX:** use SQLX script to cleansing & transform data
+* **DataLineage Diagram**
+![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/7ebe23dd0b7ae5d067ef78dbe6cf5ef71dceddc0/dataform_dept.png)
