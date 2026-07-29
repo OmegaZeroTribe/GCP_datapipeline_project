@@ -51,5 +51,149 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 
 ### 2. Cleansing&TransForm: BigQuery & DataForm (TransForm)
 * **DataForm SQLX:** use SQLX script to cleansing & transform data
-* **DataLineage Diagram**
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/7ebe23dd0b7ae5d067ef78dbe6cf5ef71dceddc0/dataform_dept.png)
+  * **SQLX sales_enriched:**
+```sql
+config {
+  type: "table",
+  schema: "sales_analyst",
+  name: "sales_enriched",
+  description: "Detailed sales transactions enriched with customer, product, and store master data."
+}
+
+WITH deduplicated_sales AS (
+  SELECT
+    transaction_id,
+    transaction_date,
+    customer_id,
+    product_id,
+    store_id,
+    quantity,
+    unit_price,
+    gross_amount,
+    discount_pct,
+    discount_amount,
+    net_amount,
+    payment_method,
+    -- Keep only the most recent entry if duplicate transaction_ids exist
+    ROW_NUMBER() OVER (
+      PARTITION BY transaction_id 
+      ORDER BY transaction_date DESC
+    ) AS row_num
+  FROM
+    ${ref("sales_record")}
+  QUALIFY row_num = 1
+)
+
+SELECT
+  -- Transaction Attributes
+  s.transaction_id,
+  s.transaction_date,
+  s.payment_method,
+
+  -- Customer Attributes
+  s.customer_id,
+  c.customer_name,
+  c.email AS customer_email,
+  c.city AS customer_city,
+  c.state AS customer_state,
+
+  -- Product Attributes
+  s.product_id,
+  p.product_name,
+  p.category AS product_category,
+  p.cost AS unit_cost,
+
+  -- Store Attributes
+  s.store_id,
+  st.store_name,
+  st.region AS store_region,
+  st.store_type,
+
+  -- Metrics
+  s.quantity,
+  s.unit_price,
+  s.gross_amount,
+  s.discount_pct,
+  s.discount_amount,
+  s.net_amount,
+  (s.net_amount - (p.cost * s.quantity)) AS profit_amount
+
+FROM
+  deduplicated_sales AS s
+
+LEFT JOIN
+  ${ref("master_customers")} AS c
+  ON s.customer_id = c.customer_id
+
+LEFT JOIN
+  ${ref("master_products")} AS p
+  ON s.product_id = p.product_id
+
+LEFT JOIN
+  ${ref("customer_stores")} AS st
+  ON s.store_id = st.store_id
+```
+
+  * **SQLX sales_agg:**
+```sql
+config {
+  type: "table",
+  schema: "sales_analyst",
+  name: "sales_agg",
+  description: "Monthly aggregation showing the top-selling product by net revenue for each month."
+}
+
+-- Step 1: Group & Aggregate raw sales data by month
+WITH monthly_sales AS (
+  SELECT
+    DATE_TRUNC(s.transaction_date, MONTH) AS sales_month,
+    s.product_id,
+    s.product_name,
+    s.product_category,
+    COUNT(DISTINCT s.transaction_id) AS total_transactions,
+    SUM(s.quantity) AS total_units_sold,
+    SUM(s.net_amount) AS total_net_revenue,
+    SUM(s.profit_amount) AS total_profit
+  FROM
+    ${ref("sales_enriched")} AS s
+  GROUP BY
+    1, 2, 3, 4
+),
+
+-- Step 2: Rank products per month using the aggregated result
+ranked_sales AS (
+  SELECT
+    sales_month,
+    product_id,
+    product_name,
+    product_category,
+    total_transactions,
+    total_units_sold,
+    total_net_revenue,
+    total_profit,
+    ROW_NUMBER() OVER (
+      PARTITION BY sales_month
+      ORDER BY total_net_revenue DESC
+    ) AS sales_rank
+  FROM
+    monthly_sales
+)
+
+-- Step 3: Extract the top-selling product for each month
+SELECT
+  sales_month,
+  product_id,
+  product_name,
+  product_category,
+  total_transactions,
+  total_units_sold,
+  total_net_revenue,
+  total_profit
+FROM
+  ranked_sales
+WHERE
+  sales_rank = 1
+ORDER BY
+  sales_month DESC
+```
