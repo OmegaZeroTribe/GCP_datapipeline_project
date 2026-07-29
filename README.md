@@ -43,5 +43,14 @@ To ensure secure execution without using full Admin privileges, a dedicated Serv
 * **DataFlow Template**
 ![Alt text for accessibility](https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/41799256653c93741e46dceeaeb1d2422d2df44b/dataflow_template.png)
   * Using the Google-managed **CSV Files on Cloud Storage to BigQuery** Dataflow template to read sales & customer data (.CSV file) and JSON (.schema)
-  * DataFlow Execution Command: https://github.com/OmegaZeroTribe/GCP_datapipeline_project/blob/a65ed20a804ce3b4a59fac3a1f315a82d756f184/dataflow_deploy/import-sales-record.sh
+  * **Execution Command:** ```bash
+gcloud dataflow jobs run import-sales-records
+--gcs-location gs://dataflow-templates-asia-southeast1/latest/GCS_CSV_to_BigQuery
+--region asia-southeast1
+--max-workers 1 --num-workers 1 --worker-region asia-southeast1
+--service-account-email dataflowjob@examproject-500619.iam.gserviceaccount.com
+--staging-location gs://bq_sale_project/tmp/
+--additional-experiments shuffle_mode=auto,use_runner_v2
+--parameters ^~^inputFilePattern=gs://bq_sale_project/sale_record/fact_sales.csv~schemaJSONPath=gs://bq_sale_project/schema/sales_record_schema.json~outputTable=examproject-500619:sales_analyst.sales_record~bigQueryLoadingTemporaryDirectory=gs://bq_sale_project/tmp/~badRecordsOutputTable=examproject-500619:dead_letter.sales_record_deadletter~containsHeaders=false~delimiter=,~csvFormat=Default~csvFileEncoding=UTF-8
+```
 
